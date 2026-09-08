@@ -1,6 +1,6 @@
-//Previo 04
+//Practica 04
 //De la Peña Osorio Lilian
-//Fecha de entrega 04 de sptiembre 2026
+//Fecha de entrega 08 de sptiembre 2026
 //Numero de cuenta 423069439
 
 #include<iostream>
@@ -40,7 +40,7 @@ int main() {
 
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-	GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "Previo 04_LilianDelaPeña", nullptr, nullptr);
+	GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 04_LilianDelaPeña", nullptr, nullptr);
 
 	int screenWidth, screenHeight;
 
@@ -87,50 +87,94 @@ int main() {
 	
 
 	// use with Perspective Projection
-	float vertices[] = {
-		-0.5f, -0.5f, 0.5f, 1.0f, 0.0f,0.0f,//Front
-		0.5f, -0.5f, 0.5f,  1.0f, 0.0f,0.0f,
-		0.5f,  0.5f, 0.5f,  1.0f, 0.0f,0.0f,
-		0.5f,  0.5f, 0.5f,  1.0f, 0.0f,0.0f,
-		-0.5f,  0.5f, 0.5f, 1.0f, 0.0f,0.0f,
-		-0.5f, -0.5f, 0.5f, 1.0f, 0.0f,0.0f,
+	float verticesBlanco[] = {
+		-0.5f, -0.5f, 0.5f, 0.95f, 0.95f,0.95f,//Front
+		0.5f, -0.5f, 0.5f,  0.95f, 0.95f,0.95f,
+		0.5f,  0.5f, 0.5f,  0.95f, 0.95f,0.95f,
+		0.5f,  0.5f, 0.5f,  0.95f, 0.95f,0.95f,
+		-0.5f,  0.5f, 0.5f, 0.95f, 0.95f,0.95f,
+		-0.5f, -0.5f, 0.5f, 0.95f, 0.95f,0.95f,
 		
-	    -0.5f, -0.5f,-0.5f, 0.0f, 1.0f,0.0f,//Back
-		 0.5f, -0.5f,-0.5f, 0.0f, 1.0f,0.0f,
-		 0.5f,  0.5f,-0.5f, 0.0f, 1.0f,0.0f,
-		 0.5f,  0.5f,-0.5f, 0.0f, 1.0f,0.0f,
-	    -0.5f,  0.5f,-0.5f, 0.0f, 1.0f,0.0f,
-	    -0.5f, -0.5f,-0.5f, 0.0f, 1.0f,0.0f,
+		-0.5f, -0.5f, -0.5f, 0.95f, 0.95f,0.95f, //Back
+		0.5f, -0.5f, -0.5f, 0.95f, 0.95f,0.95f,
+		0.5f,  0.5f, -0.5f, 0.95f, 0.95f,0.95f,
+		0.5f,  0.5f, -0.5f, 0.95f, 0.95f,0.95f,
+		-0.5f,  0.5f, -0.5f, 0.95f, 0.95f,0.95f,
+		-0.5f, -0.5f, -0.5f, 0.95f, 0.95f,0.95f,
 		
-		 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,1.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f, 0.0f,1.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f, 0.0f,1.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f, 0.0f,1.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f, 0.0f,1.0f,
-		 0.5f,  -0.5f, 0.5f, 0.0f, 0.0f,1.0f,
+		 0.5f, -0.5f,  0.5f,  0.95f, 0.95f,0.95f,//Right
+		 0.5f, -0.5f, -0.5f,  0.95f, 0.95f,0.95f,
+		 0.5f,  0.5f, -0.5f,  0.95f, 0.95f,0.95f,
+		 0.5f,  0.5f, -0.5f,  0.95f, 0.95f,0.95f,
+		 0.5f,  0.5f,  0.5f,  0.95f, 0.95f,0.95f,
+		 0.5f,  -0.5f, 0.5f, 0.95f, 0.95f,0.95f,
       
-		-0.5f,  0.5f,  0.5f,  1.0f, 1.0f,0.0f,
-		-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,0.0f,
-		-0.5f, -0.5f, -0.5f,  1.0f, 1.0f,0.0f,
-		-0.5f, -0.5f, -0.5f,  1.0f, 1.0f,0.0f,
-		-0.5f, -0.5f,  0.5f,  1.0f, 1.0f,0.0f,
-		-0.5f,  0.5f,  0.5f,  1.0f, 1.0f,0.0f,
+		-0.5f,  0.5f,  0.5f,  0.95f, 0.95f,0.95f,//left
+		-0.5f,  0.5f, -0.5f,  0.95f, 0.95f,0.95f,
+		-0.5f, -0.5f, -0.5f,  0.95f, 0.95f,0.95f,
+		-0.5f, -0.5f, -0.5f,  0.95f, 0.95f,0.95f,
+		-0.5f, -0.5f,  0.5f,  0.95f, 0.95f,0.95f,
+		-0.5f,  0.5f,  0.5f,  0.95f, 0.95f,0.95f,
 		
-		-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,1.0f,
-		0.5f, -0.5f, -0.5f,  0.0f, 1.0f,1.0f,
-		0.5f, -0.5f,  0.5f,  0.0f, 1.0f,1.0f,
-		0.5f, -0.5f,  0.5f,  0.0f, 1.0f,1.0f,
-		-0.5f, -0.5f,  0.5f, 0.0f, 1.0f,1.0f,
-		-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,1.0f,
+		-0.5f, -0.5f, -0.5f, 0.95f, 0.95f,0.95f,//bottom
+		0.5f, -0.5f, -0.5f,  0.95f, 0.95f,0.95f,
+		0.5f, -0.5f,  0.5f,  0.95f, 0.95f,0.95f,
+		0.5f, -0.5f,  0.5f,  0.95f, 0.95f,0.95f,
+		-0.5f, -0.5f,  0.5f, 0.95f, 0.95f,0.95f,
+		-0.5f, -0.5f, -0.5f, 0.95f, 0.95f,0.95f,
 		
-		-0.5f,  0.5f, -0.5f, 1.0f, 0.2f,0.5f,
-		0.5f,  0.5f, -0.5f,  1.0f, 0.2f,0.5f,
-		0.5f,  0.5f,  0.5f,  1.0f, 0.2f,0.5f,
-		0.5f,  0.5f,  0.5f,  1.0f, 0.2f,0.5f,
-		-0.5f,  0.5f,  0.5f, 1.0f, 0.2f,0.5f,
-		-0.5f,  0.5f, -0.5f, 1.0f, 0.2f,0.5f,
+		-0.5f,  0.5f, -0.5f, 0.95f, 0.95f,0.95f,//top
+		0.5f,  0.5f, -0.5f, 0.95f, 0.95f,0.95f,
+		0.5f,  0.5f,  0.5f,  0.95f, 0.95f,0.95f,
+		0.5f,  0.5f,  0.5f,  0.95f, 0.95f,0.95f,
+		-0.5f,  0.5f,  0.5f, 0.95f, 0.95f,0.95f,
+		-0.5f,  0.5f, -0.5f, 0.95f, 0.95f,0.95f,
 	};
 
+	float verticesRosa[] = {
+		// Front
+		-0.5f, -0.5f, 0.5f,  0.98f, 0.68f, 0.68f,
+		 0.5f, -0.5f, 0.5f,  0.98f, 0.68f, 0.68f,
+		 0.5f,  0.5f, 0.5f,  0.98f, 0.68f, 0.68f,
+		 0.5f,  0.5f, 0.5f,  0.98f, 0.68f, 0.68f,
+		-0.5f,  0.5f, 0.5f,  0.98f, 0.68f, 0.68f,
+		-0.5f, -0.5f, 0.5f,  0.98f, 0.68f, 0.68f,
+		// Back
+		-0.5f, -0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		 0.5f, -0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		 0.5f,  0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		 0.5f,  0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		-0.5f,  0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		-0.5f, -0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		// Right
+		 0.5f, -0.5f,  0.5f, 0.98f, 0.68f, 0.68f,
+		 0.5f, -0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		 0.5f,  0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		 0.5f,  0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		 0.5f,  0.5f,  0.5f, 0.98f, 0.68f, 0.68f,
+		 0.5f, -0.5f,  0.5f, 0.98f, 0.68f, 0.68f,
+		 // Left
+		 -0.5f,  0.5f,  0.5f, 0.98f, 0.68f, 0.68f,
+		 -0.5f,  0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		 -0.5f, -0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		 -0.5f, -0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		 -0.5f, -0.5f,  0.5f, 0.98f, 0.68f, 0.68f,
+		 -0.5f,  0.5f,  0.5f, 0.98f, 0.68f, 0.68f,
+		 // Bottom
+		 -0.5f, -0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		  0.5f, -0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		  0.5f, -0.5f,  0.5f, 0.98f, 0.68f, 0.68f,
+		  0.5f, -0.5f,  0.5f, 0.98f, 0.68f, 0.68f,
+		 -0.5f, -0.5f,  0.5f, 0.98f, 0.68f, 0.68f,
+		 -0.5f, -0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		 // Top
+		 -0.5f,  0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		  0.5f,  0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		  0.5f,  0.5f,  0.5f, 0.98f, 0.68f, 0.68f,
+		  0.5f,  0.5f,  0.5f, 0.98f, 0.68f, 0.68f,
+		 -0.5f,  0.5f,  0.5f, 0.98f, 0.68f, 0.68f,
+		 -0.5f,  0.5f, -0.5f, 0.98f, 0.68f, 0.68f,
+		};
 
 
 
@@ -143,11 +187,15 @@ int main() {
 	glBindVertexArray(VAO);
 
 	//2.- Copiamos nuestros arreglo de vertices en un buffer de vertices para que OpenGL lo use
+	//verticesBlanco
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesBlanco), verticesBlanco, GL_STATIC_DRAW);
+
+
 	// 3.Copiamos nuestro arreglo de indices en  un elemento del buffer para que OpenGL lo use
-	/*glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);*/
+	//verticesRosa
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(verticesRosa), verticesRosa, GL_STATIC_DRAW);
 
 	// 4. Despues colocamos las caracteristicas de los vertices
 
@@ -196,7 +244,6 @@ int main() {
 		GLint viewLoc = glGetUniformLocation(ourShader.Program, "view");
 		GLint projecLoc = glGetUniformLocation(ourShader.Program, "projection");
 
-
 		glUniformMatrix4fv(projecLoc, 1, GL_FALSE, glm::value_ptr(projection));
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -204,36 +251,38 @@ int main() {
 		glBindVertexArray(VAO);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, 0.5f, 0.0f));
-		model = glm::scale(model, glm::vec3(2.5f, 0.15f, 1.8f));
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(2.0f, 1.5f, 2.7f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		// PRIMERA PATA DE LA MESA
+		//cabeza
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-1.0f, -0.05f, 0.7f));
-		model = glm::scale(model, glm::vec3(0.2f, 0.9f, 0.2f));
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(2.0f, 1.5f, 2.7f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		// SEGUNDA PATA 
+		//Boca
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(1.0f, -0.05f, 0.7f));
-		model = glm::scale(model, glm::vec3(0.2f, 0.9f, 0.2f));
+		model = glm::translate(model, glm::vec3(0.0f, -0.3f, 1.4f));
+		model = glm::scale(model, glm::vec3(1.8f, 0.7f, 0.6f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		// TERCERA PATA 
+		//Ojos
+
+		//izq
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-1.0f, -0.05f, -0.7f));
-		model = glm::scale(model, glm::vec3(0.2f, 0.9f, 0.2f));
+		model = glm::translate(model, glm::vec3(-0.35f, 0.45f, 1.36f));
+		model = glm::scale(model, glm::vec3(0.25f, 0.25f, 0.05f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		// CUARTA PATA
+		//der
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(1.0f, -0.05f, -0.7f));
-		model = glm::scale(model, glm::vec3(0.2f, 0.9f, 0.2f));
+		model = glm::translate(model, glm::vec3(0.35f, 0.45f, 1.36f));
+		model = glm::scale(model, glm::vec3(0.25f, 0.25f, 0.05f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
