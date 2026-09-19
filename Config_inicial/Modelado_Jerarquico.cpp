@@ -1,6 +1,6 @@
-//Previo 05
+//Previo 06
 //De la Peña Osorio Lilian
-//Fecha de entrega: 12/09/2026
+//Fecha de entrega: 15/09/2026
 // Numero de cuenta: 423069439	
 
 #include<iostream>
