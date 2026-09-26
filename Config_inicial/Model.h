@@ -94,6 +94,8 @@ private:
 		vector<Vertex> vertices;
 		vector<GLuint> indices;
 		vector<Texture> textures;
+		
+		glm::vec3 diffuseColor(0.8f, 0.8f, 0.8f);
 
 		// Walk through each of the mesh's vertices
 		for (GLuint i = 0; i < mesh->mNumVertices; i++)
@@ -152,6 +154,20 @@ private:
 			// Diffuse: texture_diffuseN
 			// Specular: texture_specularN
 			// Normal: texture_normalN
+			
+			aiColor4D color;
+
+			if (aiGetMaterialColor(
+				material,
+				AI_MATKEY_COLOR_DIFFUSE,
+				&color) == AI_SUCCESS)
+			{
+				diffuseColor = glm::vec3(
+					color.r,
+					color.g,
+					color.b
+				);
+			}
 
 			// 1. Diffuse maps
 			vector<Texture> diffuseMaps = this->loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
@@ -163,7 +179,10 @@ private:
 		}
 
 		// Return a mesh object created from the extracted mesh data
-		return Mesh(vertices, indices, textures);
+		return Mesh(vertices,
+	indices,
+	textures,
+	diffuseColor);
 	}
 
 	// Checks all material textures of a given type and loads the textures if they're not loaded yet.
@@ -218,6 +237,13 @@ GLint TextureFromFile(const char *path, string directory)
 	int width, height;
 
 	unsigned char *image = SOIL_load_image(filename.c_str(), &width, &height, 0, SOIL_LOAD_RGB);
+	if (!image)
+{
+	cout << "ERROR::TEXTURE:: No se pudo cargar: "
+		 << filename << endl;
+
+	return 0;
+}
 
 	// Assign texture to ID
 	glBindTexture(GL_TEXTURE_2D, textureID);

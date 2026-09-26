@@ -12,6 +12,7 @@
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
+#include <glm/gtc/type_ptr.hpp>
 
 
 
@@ -44,9 +45,12 @@ public:
 	vector<GLuint> indices;
 	vector<Texture> textures;
 
+	glm::vec3 diffuseColor;
+
 	/*  Functions  */
 	// Constructor
-	Mesh(vector<Vertex> vertices, vector<GLuint> indices, vector<Texture> textures)
+	Mesh(vector<Vertex> vertices, vector<GLuint> indices,
+	vector<Texture> textures, glm::vec3 diffuseColor)
 	{
 		this->vertices = vertices;
 		this->indices = indices;
@@ -57,52 +61,85 @@ public:
 	}
 
 	// Render the mesh
-	void Draw(Shader shader)
+
+void Draw(Shader shader)
+{
+	// Indicar si el modelo tiene una textura difusa
+	bool hasDiffuseTexture = false;
+
+	GLuint diffuseNr = 1;
+	GLuint specularNr = 1;
+
+	// Bind appropriate textures
+	for (GLuint i = 0; i < this->textures.size(); i++)
 	{
-		// Bind appropriate textures
-		GLuint diffuseNr = 1;
-		GLuint specularNr = 1;
+		glActiveTexture(GL_TEXTURE0 + i);
 
-		for (GLuint i = 0; i < this->textures.size(); i++)
+		stringstream ss;
+		string number;
+		string name = this->textures[i].type;
+
+		if (name == "texture_diffuse")
 		{
-			glActiveTexture(GL_TEXTURE0 + i); // Active proper texture unit before binding
-											  // Retrieve texture number (the N in diffuse_textureN)
-			stringstream ss;
-			string number;
-			string name = this->textures[i].type;
-
-			if (name == "texture_diffuse")
-			{
-				ss << diffuseNr++; // Transfer GLuint to stream
-			}
-			else if (name == "texture_specular")
-			{
-				ss << specularNr++; // Transfer GLuint to stream
-			}
-
-			number = ss.str();
-			// Now set the sampler to the correct texture unit
-			glUniform1i(glGetUniformLocation(shader.Program, (name + number).c_str()), i);
-			// And finally bind the texture
-			glBindTexture(GL_TEXTURE_2D, this->textures[i].id);
+			ss << diffuseNr++;
+			hasDiffuseTexture = true;
+		}
+		else if (name == "texture_specular")
+		{
+			ss << specularNr++;
 		}
 
-		// Also set each mesh's shininess property to a default value (if you want you could extend this to another mesh property and possibly change this value)
-		glUniform1f(glGetUniformLocation(shader.Program, "material.shininess"), 16.0f);
+		number = ss.str();
 
-		// Draw mesh
-		glBindVertexArray(this->VAO);
-		glDrawElements(GL_TRIANGLES, this->indices.size(), GL_UNSIGNED_INT, 0);
-		glBindVertexArray(0);
+		glUniform1i(
+			glGetUniformLocation(
+				shader.Program,
+				(name + number).c_str()
+			),
+			i
+		);
 
-		// Always good practice to set everything back to defaults once configured.
-		for (GLuint i = 0; i < this->textures.size(); i++)
-		{
-			glActiveTexture(GL_TEXTURE0 + i);
-			glBindTexture(GL_TEXTURE_2D, 0);
-		}
+		glBindTexture(GL_TEXTURE_2D, this->textures[i].id);
 	}
 
+	// Indicar al shader si debe utilizar textura
+	glUniform1i(
+		glGetUniformLocation(shader.Program, "useTexture"),
+		hasDiffuseTexture
+	);
+
+	// Enviar el color del material
+	glUniform3fv(
+		glGetUniformLocation(shader.Program, "objectColor"),
+		1,
+		glm::value_ptr(this->diffuseColor)
+	);
+
+	// Shininess
+	glUniform1f(
+		glGetUniformLocation(shader.Program, "material.shininess"),
+		16.0f
+	);
+
+	// Draw mesh
+	glBindVertexArray(this->VAO);
+
+	glDrawElements(
+		GL_TRIANGLES,
+		this->indices.size(),
+		GL_UNSIGNED_INT,
+		0
+	);
+
+	glBindVertexArray(0);
+
+	// Restaurar texturas
+	for (GLuint i = 0; i < this->textures.size(); i++)
+	{
+		glActiveTexture(GL_TEXTURE0 + i);
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+}
 private:
 	/*  Render data  */
 	GLuint VAO, VBO, EBO;
