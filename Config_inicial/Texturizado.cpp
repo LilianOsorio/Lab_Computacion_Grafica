@@ -1,7 +1,10 @@
-//Previo 07
+//Practica 07
 //Lilian De la Peña Osorio 
-//Fecha de entrega: 25/09/2026
+//Fecha de entrega: 29/09/2026
 //Numero de cuenta: 423069439
+
+//Avance en clase: texturizado , agarrar una imagen, en cada cara se ocupa un pedazo diferente de imagen 
+// en una tipo caja, acomodar ese padazo de imagen		 
 
 #include <iostream>
 #include <cmath>
@@ -105,18 +108,26 @@ int main()
 	GLfloat vertices[] =
 	{
 		// Positions            // Colors              // Texture Coords
-		-0.5f, -0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.0f,0.0f,
-		0.5f, -0.5f, 0.0f,	   1.0f, 1.0f,1.0f,		1.0f,0.0f,
-		0.5f,  0.5f, 0.0f,     1.0f, 1.0f,1.0f,	    1.0f,1.0f,
-		-0.5f,  0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.0f,1.0f,
+		//Cara (numero 6)
+		-0.5f, -0.5f,  0.5f,    1.0f, 1.0f, 1.0f,    0.333f, 0.00f, 
+		 0.5f, -0.5f,  0.5f,    1.0f, 1.0f, 1.0f,    0.666f, 0.00f, 
+		 0.5f,  0.5f,  0.5f,    1.0f, 1.0f, 1.0f,    0.666f, 0.25f, 
+		-0.5f,  0.5f,  0.5f,    1.0f, 1.0f, 1.0f,    0.333f, 0.25f, 
 
 		
+		//Cara (numero 1)
+		-0.5f, -0.5f, -0.5f,    1.0f, 1.0f, 1.0f,    0.666f, 0.50f, 
+		 0.5f, -0.5f, -0.5f,    1.0f, 1.0f, 1.0f,    0.0f, 0.50f, 
+		 0.5f,  0.5f, -0.5f,    1.0f, 1.0f, 1.0f,    0.0f, 0.75f, 
+		-0.5f,  0.5f, -0.5f,    1.0f, 1.0f, 1.0f,    0.666f, 0.75f,
+
+		//Cara (numero 2)
 	};
 
 	GLuint indices[] =
 	{  // Note that we start from 0!
-		0,1,3,
-		1,2,3
+		0, 1, 2,   2, 3, 0,
+		4, 5, 6,   6, 7, 4,
 	
 	};
 
@@ -148,22 +159,28 @@ int main()
 	GLuint texture1;
 	glGenTextures(1, &texture1);
 	glBindTexture(GL_TEXTURE_2D,texture1);
+	
 	int textureWidth, textureHeight,nrChannels;
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char *image;
+	
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+	
 	// Diffuse map
-	image = stbi_load("images/window.png", &textureWidth, &textureHeight, &nrChannels,0);
+	image = stbi_load("images/dado.png", &textureWidth, &textureHeight, &nrChannels,0);
 	glBindTexture(GL_TEXTURE_2D, texture1);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	glGenerateMipmap(GL_TEXTURE_2D);
+	
 	if (image)
 	{
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image); //CANAL ALFA
+		GLenum format = (nrChannels == 4) ? GL_RGBA : GL_RGB;
+		glTexImage2D(GL_TEXTURE_2D, 0, format, textureWidth, textureHeight, 0, format, GL_UNSIGNED_BYTE, image);
 		glGenerateMipmap(GL_TEXTURE_2D);
+		std::cout << ">>> Textura 'images/dado.png' cargada correctamente. <<<\n";
 	}
 	else
 	{
@@ -211,7 +228,7 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		// Draw the light object (using light's vertex attributes)
 		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 18, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);
 
 		// Swap the screen buffers
