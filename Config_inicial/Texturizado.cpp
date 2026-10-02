@@ -3,8 +3,6 @@
 //Fecha de entrega: 29/09/2026
 //Numero de cuenta: 423069439
 
-//Avance en clase: texturizado , agarrar una imagen, en cada cara se ocupa un pedazo diferente de imagen 
-// en una tipo caja, acomodar ese padazo de imagen		 
 
 #include <iostream>
 #include <cmath>
