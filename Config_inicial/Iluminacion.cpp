@@ -1,5 +1,5 @@
-//Practica 08
-//Lilian De la Pena Osorio
+//Previo 09
+//Lilian De la Peña Osorio
 // Numero de cuenta: 423069439
 // Fecha: 08/10/2026
 
@@ -66,7 +66,7 @@ int main()
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
     // Create a GLFWwindow object that we can use for GLFW's functions
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Previo 08 - Lilian De la Peña Osorio", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Previo 09 - Lilian De la Peña Osorio", nullptr, nullptr);
 
     if (nullptr == window)
     {
