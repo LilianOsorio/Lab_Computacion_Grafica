@@ -1,8 +1,9 @@
-//Previo 09
+//Practica 09
 //Lilian De la Peña Osorio
 // Numero de cuenta: 423069439
 // Fecha: 08/10/2026
-
+// cambiar luces, que sean 5 fuentes de luz, simular diferentes luces
+//3 luces y se repiten 2 
 
 // Std. Includes
 #include <string>
