@@ -1,8 +1,7 @@
-//Previo 09
+//Practica 09
 // Alumna: Lilian De la Peña Osorio
 // Numero de cuenta: 423069439
-// Fecha: 10/08/2026
-
+// Fecha: 13/08/2026
 
 
 #include <iostream>
@@ -52,10 +51,10 @@ bool active;
 
 // Positions of the point lights
 glm::vec3 pointLightPositions[] = {
-	glm::vec3(-2.0f, 0.0f,  0.0f), // Luz 1 (Donde estará la lámpara)
-	glm::vec3(2.0f, 0.0f,  0.0f), // Luz 2
-	glm::vec3(0.0f, 0.0f,  2.0f), // Luz 3
-	glm::vec3(0.0f, 0.0f, -2.0f)  // Luz 4
+	glm::vec3(1.5f, 0.0f,  0.0f), // Luz 1
+	glm::vec3(-1.0f, 0.0f,  0.0f), // Luz 2
+	glm::vec3(0.0f, 0.0f,  1.5f), // Luz 3
+	glm::vec3(0.0f, 0.0f, -1.5f)  // Luz 4
 };
 
 float vertices[] = {
@@ -123,7 +122,7 @@ int main()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Previo 09 - Lilian De la Pena Osorio", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 09 - Lilian De la Pena Osorio", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
@@ -165,8 +164,9 @@ int main()
 	Model Transparente((char*)"Models/planta/Indoor+Plants.obj"); //Planta
 	Model Piso((char*)"Models/piso.obj");
 	Model Perro((char*)"Models/RedDog.obj"); // Perro
-	Model Lampara((char*)"Models/lampara/Street_lamp_1.obj"); //Lmapara
-	Model Fuente((char*)"Models/Fuente/objTorch.obj"); //Fuente)
+	Model Lampara((char*)"Models/lampara/Street_lamp_1.obj"); // Lámpara
+	Model Casita((char*)"Models/casita/Dog+house.obj"); // Casita del perro
+
 
 
 	// First, set the container's VAO (and VBO)
@@ -255,7 +255,7 @@ int main()
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[1].linear"), 0.09f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[1].quadratic"), 0.032f);
 
-		// Point light 3
+		// Point light 3 
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[2].position"), pointLightPositions[2].x, pointLightPositions[2].y, pointLightPositions[2].z);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[2].ambient"), 0.0f, 0.05f, 0.0f);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[2].diffuse"), 0.0f, 1.0f, 0.0f);
@@ -264,7 +264,7 @@ int main()
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[2].linear"), 0.09f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[2].quadratic"), 0.032f);
 
-		// Point light 4
+		// Point light 4 
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].position"), pointLightPositions[3].x, pointLightPositions[3].y, pointLightPositions[3].z);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].ambient"), 0.0f, 0.0f, 0.05f);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].diffuse"), 0.0f, 0.0f, 1.0f);
@@ -305,7 +305,6 @@ int main()
 		glm::mat4 model(1);
 
 
-
 		//Carga de modelo 
 		view = camera.GetViewMatrix();
 		model = glm::mat4(1);
@@ -313,47 +312,51 @@ int main()
 		Piso.Draw(lightingShader);
 
 
+		//MACETA
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(1.5f, -0.3f, 0.0f));
-		glEnable(GL_BLEND);                                         // Activa la funcionalidad para trabajar el canal alfa	
+		model = glm::translate(model, glm::vec3(1.2f, -0.3f, -1.2f));
+		model = glm::scale(model, glm::vec3(0.5f));
+		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 1); // Se manda el valor de transparencia 
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
 		Transparente.Draw(lightingShader);
-		glDisable(GL_BLEND);                                        // Desactiva el canal alfa 
+		glDisable(GL_BLEND);
 
 		glBindVertexArray(0);
 
 		//ESFERA
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-1.5f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.5f)); // Escala de la esfera
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
 		Esfera.Draw(lightingShader);
-
+		
 		//PERRO
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.5f));
+		model = glm::translate(model, glm::vec3(-0.5f, -0.1f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.7f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
 		Perro.Draw(lightingShader);
 
-		//LAMPARA
+		// LAMPARA
 		model = glm::mat4(1);
-		model = glm::translate(model, pointLightPositions[0]);
-		model = glm::scale(model, glm::vec3(0.6f)); 
+		model = glm::translate(model, glm::vec3(pointLightPositions[0].x, -0.3f, pointLightPositions[0].z));
+		model = glm::scale(model, glm::vec3(1.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
 		Lampara.Draw(lightingShader);
 
-		//FUENTE
+		// CASITA DEL PERRO 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.08f));
+		model = glm::translate(model, glm::vec3(-0.8f, -0.7f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.6f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
-		Fuente.Draw(lightingShader);
+		Casita.Draw(lightingShader);
+
 
 		// Also draw the lamp object, again binding the appropriate shader
 		lampShader.Use();
@@ -366,12 +369,11 @@ int main()
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
-		// Dibujar cubos pequeños en las 4 posiciones de las luces
 		for (GLuint i = 0; i < 4; i++)
 		{
 			model = glm::mat4(1);
 			model = glm::translate(model, pointLightPositions[i]);
-			model = glm::scale(model, glm::vec3(0.1f)); // Cubo indicador más pequeño
+			model = glm::scale(model, glm::vec3(0.1f));
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 			glBindVertexArray(VAO);
 			glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -456,11 +458,12 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode
 		}
 		else
 		{
-			Light1 = glm::vec3(0);//Cuado es solo un valor en los 3 vectores pueden dejar solo una componente
+			Light1 = glm::vec3(0);
 		}
 	}
 }
 
+// MOUSE CALLBACK
 void MouseCallback(GLFWwindow* window, double xPos, double yPos)
 {
 	if (firstMouse)
