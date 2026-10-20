@@ -1,8 +1,10 @@
-// Previo 10
+// Practica 10
 // Alumna: Lilian De la Peña Osorio
 // No. Cuenta: 423069439
-// Fecha: 19/10/2026
+// Fecha: 20/10/2026
 
+// Actvidad durante clase: Rotación al perro para que se mueva al rededor del plano, mientraas que la pelota estará rotando en sentido opuesto del perrito 
+// Posteriormente hacer que la pelota se acerque al perro y el perro subirá para golpear la pelota, como si estuviesen jugando con la pelota 
 
 #include <iostream>
 #include <cmath>
@@ -109,7 +111,12 @@ glm::vec3 Light1 = glm::vec3(0);
 float rotBall = 0;
 bool AnimBall = false;
 float movBallY = 0.0f; // Variable para la animación vertical de la pelota (desde la nariz del perro ~0.0f hasta la luz ~2.0f)
-bool subeBall = true;  // Controla la dirección del movimiento (ida y vuelta)
+float subeBall = true;  // Controla la dirección del movimiento (ida y vuelta)
+
+// Varibales para rotar
+float rotPerro = 0.0f; // Variable para la rotación del perro alrededor del plano
+float rotPelotaOrbita = 0.0f; // Variable para la rotación de la pelota alrededor del perro
+float movDogY = 0.0f; // Variable para la animación vertical del perro 
 
 
 // Deltatime
@@ -128,7 +135,7 @@ int main()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Previo 10 - Lilian De la Pena Osorio", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 10 - Lilian De la Pena Osorio", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
@@ -293,7 +300,10 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		Piso.Draw(lightingShader);
 
+		// Rotación del perro alrededor del plano en sentido horario
 		model = glm::mat4(1);
+		model = glm::rotate(model, glm::radians(rotPerro), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(1.5f, movDogY, 0.0f)); 
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
 		Dog.Draw(lightingShader);
@@ -304,9 +314,11 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 1);
 
-		// Modificamos la matriz de la pelota para trasladarla verticalmente (de la nariz del perro a la luz) y rotarla
-		model = glm::translate(model, glm::vec3(0.0f, movBallY, 0.0f));
-		model = glm::rotate(model, glm::radians(rotBall), glm::vec3(0.0f, 1.0f, 0.0f));
+		// Rotación de la pelota alrededor del plano en sentido antihorario
+		model = glm::mat4(1);
+		model = glm::rotate(model, glm::radians(rotPelotaOrbita), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(1.5f, movBallY, 0.0f)); 
+		model = glm::rotate(model, glm::radians(rotBall), glm::vec3(0.0f, 1.0f, 0.0f)); 
 
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		Ball.Draw(lightingShader);
@@ -457,27 +469,38 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode
 void Animation() {
 	if (AnimBall)
 	{
-		rotBall += 0.2f;
+		rotBall += 0.02f; //velocidad a la que va
 
-		// Animación de ida y vuelta vertical de la nariz del perro (aprox. 0.0f) hasta la altura de la luz (2.0f)
 		if (subeBall)
 		{
-			movBallY += 0.01f;
-			if (movBallY >= 2.0f) // Altura de la fuente de luz definida en pointLightPositions[0].y
+			movBallY += 0.004f;
+			if (movBallY >= 2.0f) // Altura de la fuente de luz 
 			{
 				subeBall = false;
 			}
 		}
 		else
 		{
-			movBallY -= 0.01f;
+			movBallY -= 0.004f;
 			if (movBallY <= 0.0f) // Altura inicial en la nariz del perro
 			{
 				subeBall = true;
 			}
 		}
 
-		printf("%f\n", rotBall);
+		rotPerro -= 0.2f;       // Sentido horario
+		rotPelotaOrbita += 0.2f; // Sentido antihorario
+
+		if (movBallY <= 0.4f && !subeBall)
+		{
+			movDogY = 0.2f; // Altura del salto del perro
+		}
+		else
+		{
+			movDogY = 0.0f; // El perro vuelve al piso
+		}
+
+		//printf("%f\n", rotBall);
 	}
 	else
 	{
