@@ -1,10 +1,8 @@
 // Practica 10
 // Alumna: Lilian De la Peña Osorio
 // No. Cuenta: 423069439
-// Fecha: 20/10/2026
+// Fecha: 21/10/2026
 
-// Actvidad durante clase: Rotación al perro para que se mueva al rededor del plano, mientraas que la pelota estará rotando en sentido opuesto del perrito 
-// Posteriormente hacer que la pelota se acerque al perro y el perro subirá para golpear la pelota, como si estuviesen jugando con la pelota 
 
 #include <iostream>
 #include <cmath>
@@ -110,13 +108,14 @@ glm::vec3 Light1 = glm::vec3(0);
 //Anim
 float rotBall = 0;
 bool AnimBall = false;
-float movBallY = 0.0f; // Variable para la animación vertical de la pelota (desde la nariz del perro ~0.0f hasta la luz ~2.0f)
+float movBallY = 0.0f; 
 float subeBall = true;  // Controla la dirección del movimiento (ida y vuelta)
 
-// Varibales para rotar
-float rotPerro = 0.0f; // Variable para la rotación del perro alrededor del plano
-float rotPelotaOrbita = 0.0f; // Variable para la rotación de la pelota alrededor del perro
-float movDogY = 0.0f; // Variable para la animación vertical del perro 
+
+float rotPerro = 0.0f;
+float rotPelotaOrbita = 0.0f;
+float movDogY = 0.0f; // Variable para el salto vertical del perro al golpear la pelota
+float anguloOrbita = 0.0f; 
 
 
 // Deltatime
@@ -135,7 +134,7 @@ int main()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 10 - Lilian De la Pena Osorio", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Previo 10 - Lilian De la Pena Osorio", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
@@ -300,10 +299,10 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		Piso.Draw(lightingShader);
 
-		// Rotación del perro alrededor del plano en sentido horario
+		// Rotación del perro alrededor del plano en sentido horario (movDogY)
 		model = glm::mat4(1);
 		model = glm::rotate(model, glm::radians(rotPerro), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::translate(model, glm::vec3(1.5f, movDogY, 0.0f)); 
+		model = glm::translate(model, glm::vec3(1.5f, movDogY, 0.0f)); // Añade el salto del perro en Y
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 0);
 		Dog.Draw(lightingShader);
@@ -314,7 +313,7 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 1);
 
-		// Rotación de la pelota alrededor del plano en sentido antihorario
+		// Rotación de la pelota alrededor del plano en sentido antihorario 
 		model = glm::mat4(1);
 		model = glm::rotate(model, glm::radians(rotPelotaOrbita), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::translate(model, glm::vec3(1.5f, movBallY, 0.0f)); 
@@ -469,29 +468,16 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode
 void Animation() {
 	if (AnimBall)
 	{
-		rotBall += 0.02f; //velocidad a la que va
+		rotBall += 0.1f;
 
-		if (subeBall)
-		{
-			movBallY += 0.004f;
-			if (movBallY >= 2.0f) // Altura de la fuente de luz 
-			{
-				subeBall = false;
-			}
-		}
-		else
-		{
-			movBallY -= 0.004f;
-			if (movBallY <= 0.0f) // Altura inicial en la nariz del perro
-			{
-				subeBall = true;
-			}
-		}
+		anguloOrbita += 0.2f;
 
-		rotPerro -= 0.2f;       // Sentido horario
-		rotPelotaOrbita += 0.2f; // Sentido antihorario
+		rotPerro = anguloOrbita;         // Sentido horario
+		rotPelotaOrbita = -anguloOrbita; // Sentido antihorario
 
-		if (movBallY <= 0.4f && !subeBall)
+		movBallY = 1.0f - cos(glm::radians(anguloOrbita * 2.0f));
+
+		if (movBallY <= 0.2f)
 		{
 			movDogY = 0.2f; // Altura del salto del perro
 		}
@@ -500,7 +486,7 @@ void Animation() {
 			movDogY = 0.0f; // El perro vuelve al piso
 		}
 
-		//printf("%f\n", rotBall);
+		printf("%f\n", rotBall);
 	}
 	else
 	{
