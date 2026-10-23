@@ -1,26 +1,28 @@
-﻿  Animación_Básica.cpp
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(210,24): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(250,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(250,21): warning C4244:         with
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(250,21): warning C4244:         [
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(250,21): warning C4244:             T=float
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(250,21): warning C4244:         ]
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(251,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(251,21): warning C4244:         with
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(251,21): warning C4244:         [
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(251,21): warning C4244:             T=float
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(251,21): warning C4244:         ]
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(252,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(252,21): warning C4244:         with
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(252,21): warning C4244:         [
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(252,21): warning C4244:             T=float
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(252,21): warning C4244:         ]
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(507,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(508,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(512,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(513,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(515,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Animación_Básica.cpp(516,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+﻿  Maquina de estados.cpp
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(217,24): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(257,20): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(257,20): warning C4244:         with
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(257,20): warning C4244:         [
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(257,20): warning C4244:             T=float
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(257,20): warning C4244:         ]
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(258,20): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(258,20): warning C4244:         with
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(258,20): warning C4244:         [
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(258,20): warning C4244:             T=float
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(258,20): warning C4244:         ]
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(259,20): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(259,20): warning C4244:         with
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(259,20): warning C4244:         [
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(259,20): warning C4244:             T=float
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(259,20): warning C4244:         ]
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(579,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(580,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(584,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(585,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(587,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(588,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
+soil2-debug.lib(etc1_utils.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(etc1_utils.obj)' o en 'C:\Users\lilian\source\repos\Config_inicial\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
 soil2-debug.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(image_DXT.obj)' o en 'C:\Users\lilian\source\repos\Config_inicial\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
 soil2-debug.lib(image_helper.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(image_helper.obj)' o en 'C:\Users\lilian\source\repos\Config_inicial\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
 soil2-debug.lib(SOIL2.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(SOIL2.obj)' o en 'C:\Users\lilian\source\repos\Config_inicial\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
