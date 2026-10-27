@@ -1,7 +1,7 @@
-// Previo 11 - Animacion maquina de estados
+// Practica 11 - Animacion maquina de estados
 // Alumna: Lilian De la Peña Osorio
 // Número de Cuenta: 423069439
-// Fecha de entrega: 22/10/2026
+// Fecha de entrega: 27/10/2026
 
 
 #include <iostream>
@@ -111,6 +111,7 @@ bool AnimBall = false;
 bool AnimDog = false;
 float rotDog = 0.0f;
 int dogAnim = 0;
+int dogAnimState = 1;
 float FLegs = 0.0f;
 float RLegs = 0.0f;
 float head = 0.0f;
@@ -137,7 +138,7 @@ int main()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Previo 11 - Lilian De la Peña Osorio", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 11 - Lilian De la Pena Osorio", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
@@ -530,49 +531,148 @@ void Animation() {
 	//Estado principal del perro
 	if (dogAnim == 1) //Walk animation 
 	{
-		// Condición para que el perro avance de forma continua y se detenga antes de terminar el piso
-		if (dogPos.z < 2.0f) // Límite exacto antes de salir del piso
-		{
-			if (!step)
-			{
-				//Estado 1 cuando esta en falso
-				RLegs += 0.3f;
-				FLegs += 0.3f;
-				head += 0.3f;
-				tail += 0.3f;
-
-				dogPos.z += 0.004f;
-
-				if (RLegs > 15.0f)//condicion
-
-					step = true;
+		// 1. Caminar hacia adelante (hacia el primer borde)
+		if (dogAnimState == 1) {
+			if (dogPos.z < 2.0f) {
+				if (!step) {
+					RLegs += 0.3f;
+					FLegs += 0.3f;
+					head += 0.3f;
+					tail += 0.3f;
+					dogPos.z += 0.004f;
+					if (RLegs > 15.0f) step = true;
+				}
+				else {
+					RLegs -= 0.3f;
+					FLegs -= 0.3f;
+					head -= 0.3f;
+					tail -= 0.3f;
+					dogPos.z += 0.004f;
+					if (RLegs < -15.0f) step = false;
+				}
 			}
-
-			//paso siguiente, ahora negativas
-			else
-			{
-				RLegs -= 0.3f;
-				FLegs -= 0.3f;
-				head -= 0.3f;
-				tail -= 0.3f;
-
-				dogPos.z += 0.004f;
-
-				if (RLegs < -15.0f)//condicion para que no gire infinitamente depsues del paso
-					step = false;
+			else {
+				dogPos.z = 2.0f;
+				dogAnimState = 2; // Pasar a girar
 			}
 		}
-		else
-		{
-			dogPos.z = 2.0f; // Se detiene fijamente al llegar al borde del piso
+		// 2. Girar hacia la izquierda en la esquina
+		else if (dogAnimState == 2) {
+			dogRot += 0.5f;
+			if (dogRot >= -90.0f) {
+				dogRot = -90.0f;
+				dogAnimState = 3;
+			}
 		}
+		// 3. Caminar derecho sobre el borde
+		else if (dogAnimState == 3) {
+			if (dogPos.x > -2.0f) {
+				if (!step) {
+					RLegs += 0.3f;
+					FLegs += 0.3f;
+					head += 0.3f;
+					tail += 0.3f;
+					dogPos.x -= 0.004f;
+					if (RLegs > 15.0f) step = true;
+				}
+				else {
+					RLegs -= 0.3f;
+					FLegs -= 0.3f;
+					head -= 0.3f;
+					tail -= 0.3f;
+					dogPos.x -= 0.004f;
+					if (RLegs < -15.0f) step = false;
+				}
+			}
+			else {
+				dogPos.x = -2.0f;
+				dogAnimState = 4;
+			}
+		}
+		// 4. Volver a girar para caminar 
+		else if (dogAnimState == 4) {
+			dogRot += 0.5f;
+			if (dogRot >= -180.0f) {
+				dogRot = -180.0f;
+				dogAnimState = 5;
+			}
+		}
+
+		// 5. Caminar derecho sobre el borde superior
+		else if (dogAnimState == 5) {
+			if (dogPos.z > -2.0f) {
+				if (!step) {
+					RLegs += 0.3f;
+					FLegs += 0.3f;
+					head += 0.3f;
+					tail += 0.3f;
+					dogPos.z -= 0.004f;
+					if (RLegs > 15.0f) step = true;
+				}
+				else {
+					RLegs -= 0.3f;
+					FLegs -= 0.3f;
+					head -= 0.3f;
+					tail -= 0.3f;
+					dogPos.z -= 0.004f;
+					if (RLegs < -15.0f) step = false;
+				}
+			}
+			else {
+				dogPos.z = -2.0f;
+				dogAnimState = 6;
+			}
+		}
+		// 6. Girar hacia el otro borde
+		else if (dogAnimState == 6) {
+			dogRot += 0.5f;
+			if (dogRot >= -270.0f) {
+				dogRot = -270.0f;
+				dogAnimState = 7;
+			}
+		}
+
+		// 7. Caminar derecho sobre el borde 
+		else if (dogAnimState == 7) {
+			if (dogPos.x < 2.0f) {
+				if (!step) {
+					RLegs += 0.3f;
+					FLegs += 0.3f;
+					head += 0.3f;
+					tail += 0.3f;
+					dogPos.x += 0.004f;
+					if (RLegs > 15.0f) step = true;
+				}
+				else {
+					RLegs -= 0.3f;
+					FLegs -= 0.3f;
+					head -= 0.3f;
+					tail -= 0.3f;
+					dogPos.x += 0.004f;
+					if (RLegs < -15.0f) step = false;
+				}
+			}
+			else {
+				dogPos.x = 2.0f;
+				dogAnimState = 8; // Volver al inicio
+			}
+		}
+		//8. Girar para diagonal
+		else if (dogAnimState == 8) {
+			dogRot += 0.5f;
+			if (dogRot >= -30.0f) {
+				dogRot = -30.0f;
+				dogAnimState = 9;
+			}
+		}
+		
+		// 9. Avanzar 
+
 
 	}
-
-
 }
 
-void MouseCallback(GLFWwindow *window, double xPos, double yPos)
+void MouseCallback(GLFWwindow* window, double xPos, double yPos)
 {
 	if (firstMouse)
 	{
