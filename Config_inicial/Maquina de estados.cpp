@@ -535,20 +535,20 @@ void Animation() {
 		if (dogAnimState == 1) {
 			if (dogPos.z < 2.0f) {
 				if (!step) {
-					RLegs += 0.3f;
-					FLegs += 0.3f;
-					head += 0.3f;
-					tail += 0.3f;
-					dogPos.z += 0.004f;
-					if (RLegs > 15.0f) step = true;
+					RLegs += 0.2f;
+					FLegs += 0.2f;
+					head += 0.2f;
+					tail += 0.2f;
+					dogPos.z += 0.0025f; // Caminata más lenta
+					if (RLegs > 10.0f) step = true;
 				}
 				else {
-					RLegs -= 0.3f;
-					FLegs -= 0.3f;
-					head -= 0.3f;
-					tail -= 0.3f;
-					dogPos.z += 0.004f;
-					if (RLegs < -15.0f) step = false;
+					RLegs -= 0.2f;
+					FLegs -= 0.2f;
+					head -= 0.2f;
+					tail -= 0.2f;
+					dogPos.z += 0.0025f;
+					if (RLegs < -10.0f) step = false;
 				}
 			}
 			else {
@@ -556,10 +556,18 @@ void Animation() {
 				dogAnimState = 2; // Pasar a girar
 			}
 		}
-		// 2. Girar hacia la izquierda en la esquina
+		// 2. Giro suave y lento hacia la izquierda en la esquina
 		else if (dogAnimState == 2) {
-			dogRot += 0.5f;
-			if (dogRot >= -90.0f) {
+			dogRot -= 0.4f; // Giro más pausado
+			if (!step) {
+				RLegs += 0.15f; FLegs += 0.15f; head += 0.15f; tail += 0.15f;
+				if (RLegs > 8.0f) step = true;
+			}
+			else {
+				RLegs -= 0.15f; FLegs -= 0.15f; head -= 0.15f; tail -= 0.15f;
+				if (RLegs < -8.0f) step = false;
+			}
+			if (dogRot <= -90.0f) {
 				dogRot = -90.0f;
 				dogAnimState = 3;
 			}
@@ -568,20 +576,20 @@ void Animation() {
 		else if (dogAnimState == 3) {
 			if (dogPos.x > -2.0f) {
 				if (!step) {
-					RLegs += 0.3f;
-					FLegs += 0.3f;
-					head += 0.3f;
-					tail += 0.3f;
-					dogPos.x -= 0.004f;
-					if (RLegs > 15.0f) step = true;
+					RLegs += 0.2f;
+					FLegs += 0.2f;
+					head += 0.2f;
+					tail += 0.2f;
+					dogPos.x -= 0.0025f;
+					if (RLegs > 10.0f) step = true;
 				}
 				else {
-					RLegs -= 0.3f;
-					FLegs -= 0.3f;
-					head -= 0.3f;
-					tail -= 0.3f;
-					dogPos.x -= 0.004f;
-					if (RLegs < -15.0f) step = false;
+					RLegs -= 0.2f;
+					FLegs -= 0.2f;
+					head -= 0.2f;
+					tail -= 0.2f;
+					dogPos.x -= 0.0025f;
+					if (RLegs < -10.0f) step = false;
 				}
 			}
 			else {
@@ -589,10 +597,18 @@ void Animation() {
 				dogAnimState = 4;
 			}
 		}
-		// 4. Volver a girar para caminar 
+		// 4. Giro suave para el siguiente borde
 		else if (dogAnimState == 4) {
-			dogRot += 0.5f;
-			if (dogRot >= -180.0f) {
+			dogRot -= 0.4f;
+			if (!step) {
+				RLegs += 0.15f; FLegs += 0.15f; head += 0.15f; tail += 0.15f;
+				if (RLegs > 8.0f) step = true;
+			}
+			else {
+				RLegs -= 0.15f; FLegs -= 0.15f; head -= 0.15f; tail -= 0.15f;
+				if (RLegs < -8.0f) step = false;
+			}
+			if (dogRot <= -180.0f) {
 				dogRot = -180.0f;
 				dogAnimState = 5;
 			}
@@ -602,20 +618,20 @@ void Animation() {
 		else if (dogAnimState == 5) {
 			if (dogPos.z > -2.0f) {
 				if (!step) {
-					RLegs += 0.3f;
-					FLegs += 0.3f;
-					head += 0.3f;
-					tail += 0.3f;
-					dogPos.z -= 0.004f;
-					if (RLegs > 15.0f) step = true;
+					RLegs += 0.2f;
+					FLegs += 0.2f;
+					head += 0.2f;
+					tail += 0.2f;
+					dogPos.z -= 0.0025f;
+					if (RLegs > 10.0f) step = true;
 				}
 				else {
-					RLegs -= 0.3f;
-					FLegs -= 0.3f;
-					head -= 0.3f;
-					tail -= 0.3f;
-					dogPos.z -= 0.004f;
-					if (RLegs < -15.0f) step = false;
+					RLegs -= 0.2f;
+					FLegs -= 0.2f;
+					head -= 0.2f;
+					tail -= 0.2f;
+					dogPos.z -= 0.0025f;
+					if (RLegs < -10.0f) step = false;
 				}
 			}
 			else {
@@ -623,10 +639,18 @@ void Animation() {
 				dogAnimState = 6;
 			}
 		}
-		// 6. Girar hacia el otro borde
+		// 6. Giro suave hacia el otro borde
 		else if (dogAnimState == 6) {
-			dogRot += 0.5f;
-			if (dogRot >= -270.0f) {
+			dogRot -= 0.4f;
+			if (!step) {
+				RLegs += 0.15f; FLegs += 0.15f; head += 0.15f; tail += 0.15f;
+				if (RLegs > 8.0f) step = true;
+			}
+			else {
+				RLegs -= 0.15f; FLegs -= 0.15f; head -= 0.15f; tail -= 0.15f;
+				if (RLegs < -8.0f) step = false;
+			}
+			if (dogRot <= -270.0f) {
 				dogRot = -270.0f;
 				dogAnimState = 7;
 			}
@@ -636,20 +660,20 @@ void Animation() {
 		else if (dogAnimState == 7) {
 			if (dogPos.x < 2.0f) {
 				if (!step) {
-					RLegs += 0.3f;
-					FLegs += 0.3f;
-					head += 0.3f;
-					tail += 0.3f;
-					dogPos.x += 0.004f;
-					if (RLegs > 15.0f) step = true;
+					RLegs += 0.2f;
+					FLegs += 0.2f;
+					head += 0.2f;
+					tail += 0.2f;
+					dogPos.x += 0.0025f;
+					if (RLegs > 10.0f) step = true;
 				}
 				else {
-					RLegs -= 0.3f;
-					FLegs -= 0.3f;
-					head -= 0.3f;
-					tail -= 0.3f;
-					dogPos.x += 0.004f;
-					if (RLegs < -15.0f) step = false;
+					RLegs -= 0.2f;
+					FLegs -= 0.2f;
+					head -= 0.2f;
+					tail -= 0.2f;
+					dogPos.x += 0.0025f;
+					if (RLegs < -10.0f) step = false;
 				}
 			}
 			else {
@@ -657,16 +681,50 @@ void Animation() {
 				dogAnimState = 8; // Volver al inicio
 			}
 		}
-		//8. Girar para diagonal
+		// 8. Giro suave y lento para orientarse hacia la diagonal del centro
 		else if (dogAnimState == 8) {
-			dogRot += 0.5f;
-			if (dogRot >= -30.0f) {
-				dogRot = -30.0f;
+			dogRot -= 0.4f;
+			if (!step) {
+				RLegs += 0.15f; FLegs += 0.15f; head += 0.15f; tail += 0.15f;
+				if (RLegs > 8.0f) step = true;
+			}
+			else {
+				RLegs -= 0.15f; FLegs -= 0.15f; head -= 0.15f; tail -= 0.15f;
+				if (RLegs < -8.0f) step = false;
+			}
+			if (dogRot <= -405.0f) {
+				dogRot = -405.0f;
 				dogAnimState = 9;
 			}
 		}
-		
-		// 9. Avanzar 
+
+		// 9. Avanzar más pausado en diagonal hacia el centro viendo de frente
+		else if (dogAnimState == 9) {
+			if (dogPos.x > 0.0f && dogPos.z < 0.0f) {
+				if (!step) {
+					RLegs += 0.2f;
+					FLegs += 0.2f;
+					head += 0.2f;
+					tail += 0.2f;
+					dogPos.x -= 0.002f;
+					dogPos.z += 0.002f;
+					if (RLegs > 10.0f) step = true;
+				}
+				else {
+					RLegs -= 0.2f;
+					FLegs -= 0.2f;
+					head -= 0.2f;
+					tail -= 0.2f;
+					dogPos.x -= 0.002f;
+					dogPos.z += 0.002f;
+					if (RLegs < -10.0f) step = false;
+				}
+			}
+			else {
+				dogPos.x = 0.0f;
+				dogPos.z = 0.0f;
+			}
+		}
 
 
 	}
@@ -682,7 +740,7 @@ void MouseCallback(GLFWwindow* window, double xPos, double yPos)
 	}
 
 	GLfloat xOffset = xPos - lastX;
-	GLfloat yOffset = lastY - yPos;  // Reversed since y-coordinates go from bottom to left
+	GLfloat yOffset = lastY - yPos;  // Reversed since y-coordinates go from bottom to top
 
 	lastX = xPos;
 	lastY = yPos;
