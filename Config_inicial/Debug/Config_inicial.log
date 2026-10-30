@@ -1,29 +1,29 @@
-﻿  Maquina de estados.cpp
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(218,24): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(258,20): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(258,20): warning C4244:         with
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(258,20): warning C4244:         [
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(258,20): warning C4244:             T=float
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(258,20): warning C4244:         ]
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(259,20): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(259,20): warning C4244:         with
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(259,20): warning C4244:         [
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(259,20): warning C4244:             T=float
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(259,20): warning C4244:         ]
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(260,20): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(260,20): warning C4244:         with
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(260,20): warning C4244:         [
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(260,20): warning C4244:             T=float
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(260,20): warning C4244:         ]
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(737,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(738,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(742,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(743,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(745,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\lilian\source\repos\Config_inicial\Config_inicial\Maquina de estados.cpp(746,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
-soil2-debug.lib(etc1_utils.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(etc1_utils.obj)' o en 'C:\Users\lilian\source\repos\Config_inicial\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-soil2-debug.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(image_DXT.obj)' o en 'C:\Users\lilian\source\repos\Config_inicial\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-soil2-debug.lib(image_helper.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(image_helper.obj)' o en 'C:\Users\lilian\source\repos\Config_inicial\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-soil2-debug.lib(SOIL2.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(SOIL2.obj)' o en 'C:\Users\lilian\source\repos\Config_inicial\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+﻿  KeyFrames.cpp
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(379,24): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(419,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(419,21): warning C4244:         with
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(419,21): warning C4244:         [
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(419,21): warning C4244:             T=float
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(419,21): warning C4244:         ]
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(420,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(420,21): warning C4244:         with
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(420,21): warning C4244:         [
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(420,21): warning C4244:             T=float
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(420,21): warning C4244:         ]
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(421,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(421,21): warning C4244:         with
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(421,21): warning C4244:         [
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(421,21): warning C4244:             T=float
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(421,21): warning C4244:         ]
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(349,19): warning C4101: 'EBO': variable local sin referencia
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(605,14): warning C4305: '+=': truncamiento de 'double' a 'float'
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(610,14): warning C4305: '-=': truncamiento de 'double' a 'float'
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(615,14): warning C4305: '-=': truncamiento de 'double' a 'float'
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(620,14): warning C4305: '+=': truncamiento de 'double' a 'float'
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(867,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(868,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(872,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(873,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(875,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\lilian\source\repos\Config_inicial\Config_inicial\KeyFrames.cpp(876,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
   Config_inicial.vcxproj -> C:\Users\lilian\source\repos\Config_inicial\Debug\Config_inicial.exe

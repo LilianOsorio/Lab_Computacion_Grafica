@@ -1,4 +1,4 @@
-// Practica 11 - Animacion maquina de estados
+// Previo 11 - Animacion maquina de estados
 // Alumna: Lilian De la Peña Osorio
 // Número de Cuenta: 423069439
 // Fecha de entrega: 27/10/2026
